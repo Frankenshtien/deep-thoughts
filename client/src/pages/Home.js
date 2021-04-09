@@ -1,14 +1,12 @@
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { QUERY_THOUGHTS } from "../utils/queries";
-import ThoughtLIst from "../components/ThoughtList";
+import React from 'react';
+import ThoughtList from '../components/ThoughtList';
+
+import { useQuery } from '@apollo/react-hooks';
+import { QUERY_THOUGHTS } from '../utils/queries';
 
 const Home = () => {
-  //use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_THOUGHTS);
-
   const thoughts = data?.thoughts || [];
-  console.log(thoughts);
 
   return (
     <main>
@@ -17,10 +15,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtLIst
-              thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
-            />
+            <ThoughtList thoughts={thoughts} title="Some Feed for Thought(s)..." />
           )}
         </div>
       </div>
